@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Vishnu's Website</title>
-        <link rel="stylesheet" href="styles (1).css" />
+        <link rel="stylesheet" href="styles.css" />
     </head>
   <body>
     <div class = "content">
@@ -27,27 +27,27 @@
             <h1 class = "contact">Contact me!</h1>
 
             <div class = "contact_me">
-                <h2 class = "email">Email : vishnualachi@gmail.com</h2>
                 <h2><a class = "linkedin" href = "https://www.linkedin.com/in/vishnu-alachi/" target="_blank">My linkedin</a></h2>
+
+                <form id="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Name" required />
+                    <br /><br />
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" />
+                    <br /><br />
+                    <label for="message">Message</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      placeholder="Message"
+                      required
+                    ></textarea>
+                    <br /><br />
+                    <input type="submit" value="Submit" />
+                  </form>
             </div>
         </div>
-        <form id="contact-form">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required />
-            <br /><br />
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" />
-            <br /><br />
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Message"
-              required
-            ></textarea>
-            <br /><br />
-            <input type="submit" value="Submit" />
-          </form>
     </main>
     </div>
     <footer class = "footer">© 2024 <Vishnu's Website> | All Rights Reserved</footer>
