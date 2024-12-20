@@ -5,7 +5,7 @@
   justify-content: space-between;
   position: relative;
   background-color: beige;
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
   border: 2px solid #ccc;
@@ -49,10 +49,10 @@
 }
 
 .blog_img {
-  width: 50%; /* Smaller image width */
-  max-width: 50px; /* Further reduced max width */
+  width: 50%; 
+  max-width: 50px;
   border: 2px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
-}
+} 

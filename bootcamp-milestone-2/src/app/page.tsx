@@ -1,8 +1,47 @@
-import blogs from "./blogData";
+import connectDB from "@/database/db";
+import { useState, useEffect } from "react";
 import BlogPreview from "./c/components/blogPreview";
 import Image from "next/image";
+import Blogs from "@/database/blogSchema";
 
-export default function Home() {
+type Blog = {
+	title: string;
+	date: Date;
+	description: string; 
+	image: string;
+	imageAlt: string;
+  slug: string; 
+  content: string; 
+// ADD comment to this part in next milestone
+};
+
+async function getBlogs(){
+	await connectDB()
+
+	try {
+
+	    const blogs = await Blogs.find().sort({ date: -1 }).orFail()
+
+	    return blogs
+	} catch (err) {
+	    return null
+	}
+}
+
+
+export default async function Home() {
+    const blogs= await getBlogs();
+
+    if (!blogs) {
+        return (
+          <div>
+            <h1>Projects</h1>
+            <p>No projects found. Please try again later.</p>
+          </div>
+        );
+      }
+
+
   return (
     <div>
       <div className="content">
@@ -28,9 +67,20 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                {blogs.map(blog => 
-    <BlogPreview {...blog}/> // This is how we call the component
-      )}
+
+
+        {blogs.map((blog) => (
+          <BlogPreview
+            key={blog.slug} 
+            title={blog.title}
+	        date ={blog.date}
+	        description = {blog.description}
+	        image = {blog.image}
+	        imageAlt = {blog.imageAlt}
+            content = {blog.content}
+            slug = {blog.slug}
+          />
+        ))}
             </main>
 
             <footer className="footer">
@@ -40,4 +90,6 @@ export default function Home() {
   </div>
   );
 }
+
+
 
