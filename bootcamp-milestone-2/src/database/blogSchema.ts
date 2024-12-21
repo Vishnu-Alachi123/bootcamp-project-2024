@@ -1,5 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 
+type IComment = {
+	user: string;
+	comment: string;
+	time: Date;
+}
+
 type Blog = {
 	title: string;
 	date: Date;
@@ -8,7 +14,7 @@ type Blog = {
 	imageAlt: string;
   slug: string; 
   content: string;
-// ADD comment to this part in next milestone
+  comment: IComment[];
 };
 
 // mongoose schema 
@@ -19,7 +25,12 @@ const blogSchema = new Schema<Blog>({
 		image: { type: String, required: true },
 		imageAlt: { type: String, required: true },
 		slug: { type: String, required: true },
-		content: { type: String, required: true }
+		content: { type: String, required: true },
+		comment: {
+			user: {type: String, required: true}, 
+			comment: {type : String, required : true},
+			time : { type: Date, required: true, default: new Date()}
+		}
 		
 })
 

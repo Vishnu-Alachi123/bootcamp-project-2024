@@ -2,6 +2,13 @@ import React from 'react';
 import style from "../../home.module.css"; 
 import Image from "next/image";
 import "../../globals.css";
+import Comment from '@/app/c/components/comment';
+
+type IComment = {
+	user: string;
+	comment: string;
+	time: Date;
+}
 
 async function getBlog(slug: string) {
   try {
@@ -46,6 +53,15 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           <div className={style.blog_content}>
             {blog.content}
           </div>
+
+          <h2> Comments</h2>
+          {Array.isArray(blog.comment)?(
+          blog.comments.map((comment: IComment, index:number) => (
+	                <Comment key={index} comment={comment} />
+	            ))
+          ):(
+            <p> No Comments</p>
+          )}
         </div>
         
         <div className={style.footer}>
