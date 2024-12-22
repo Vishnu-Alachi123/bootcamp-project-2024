@@ -49,7 +49,6 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
         <p className={style.blog_date}>Date: {new Date(blog.date).toLocaleDateString()}</p>
         
         <div>
-          <div>{deployedUrl}</div>
           <Image
             className={style.blog_image}
             src={ blog.image}

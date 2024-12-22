@@ -14,6 +14,8 @@ export async function GET(req: NextRequest, { params }: {params: Promise<{slug: 
 	        const blog = await projectSchema.findOne({ slug }).orFail()
 	        return NextResponse.json(blog)
 	    } catch (err) {
+			const deployedUrl = process.env.VERCEL_URL;
+			console.log("de",deployedUrl)
 	        return NextResponse.json('Blog not found.', { status: 404 })
 	    }
 }
