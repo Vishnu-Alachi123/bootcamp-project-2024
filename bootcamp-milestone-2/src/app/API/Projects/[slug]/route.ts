@@ -16,6 +16,6 @@ export async function GET(req: NextRequest, { params }: {params: Promise<{slug: 
 	    } catch (err) {
 			const deployedUrl = process.env.VERCEL_URL;
 			console.log("de",deployedUrl)
-	        return NextResponse.json('Blog not found.', { status: 404 })
+	        return NextResponse.json({message: 'Blog not found.', deploy: deployedUrl} ,{ status: 404 })
 	    }
 }
