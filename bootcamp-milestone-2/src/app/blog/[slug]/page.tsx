@@ -14,7 +14,7 @@ type IComment = {
 
 async function getBlog(slug: string) {
   try {
-    const url = `/blog/${slug}`;
+    const url = `/API/Blogs/${slug}`;
 
     const res = await fetch(url, {
       cache: "no-store",
@@ -33,8 +33,8 @@ async function getBlog(slug: string) {
   }
 }
 
-export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
-  const slug = (await params).slug;
+export default async function Blog({ params }: { params: { slug: string } }) {
+  const slug = params.slug;
   const blog = await getBlog(slug);
 
   if (blog) {
