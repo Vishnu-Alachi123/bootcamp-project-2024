@@ -15,6 +15,7 @@ type IComment = {
 async function getBlog(slug: string) {
 
   const deployedUrl = process.env.VERCEL_URL;
+  console.log("de",deployedUrl)
 
   const url = `${deployedUrl}/api/blogs/${slug}`;
   try {
