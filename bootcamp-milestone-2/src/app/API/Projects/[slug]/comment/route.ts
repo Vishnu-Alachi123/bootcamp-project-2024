@@ -8,7 +8,7 @@ import Projects from "@/database/projectschema";
 export async function POST(req: NextRequest) {
 
     try {
-
+        
         await connectDB();
 
         const url = new URL(req.url);

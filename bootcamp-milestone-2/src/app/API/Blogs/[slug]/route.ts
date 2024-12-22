@@ -9,6 +9,9 @@ import connectDB from '@/database/db'
 export async function GET(req: NextRequest, { params }: {params: Promise<{slug: string }> }) {
     await connectDB() 
 		const  slug  = (await params).slug
+		const deployedUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const url = '${currentUrl}${slug}'
+  console.log(url)
 
 	   try {
 	        const blog = await blogSchema.findOne({ slug }).orFail()

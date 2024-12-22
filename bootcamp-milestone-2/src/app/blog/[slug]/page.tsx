@@ -39,8 +39,6 @@ async function getBlog(slug: string) {
 export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const blog = await getBlog(slug);
-  const deployedUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const url = '${currentUrl}${slug}'
 
 
   if (blog) {
@@ -61,7 +59,6 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           <div className={style.blog_content}>
             {blog.content}
           </div>
-          <div>{url}</div>
 
           <h2> Comments</h2>
           {Array.isArray(blog.comments)?(
