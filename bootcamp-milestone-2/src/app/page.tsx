@@ -4,17 +4,6 @@ import BlogPreview from "./c/components/blogPreview";
 import Image from "next/image";
 import Blogs from "@/database/blogSchema";
 
-type Blog = {
-	title: string;
-	date: Date;
-	description: string; 
-	image: string;
-	imageAlt: string;
-  slug: string; 
-  content: string; 
-// ADD comment to this part in next milestone
-};
-
 async function getBlogs(){
 	await connectDB()
 

@@ -3,6 +3,7 @@ import style from "../../home.module.css";
 import Image from "next/image";
 import "../../globals.css";
 import Comment from '@/app/c/components/comment';
+import CommentForm from '@/app/c/components/blogcommentform';
 
 type IComment = {
 	user: string;
@@ -55,13 +56,20 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
           </div>
 
           <h2> Comments</h2>
-          {Array.isArray(blog.comment)?(
+          {Array.isArray(blog.comments)?(
           blog.comments.map((comment: IComment, index:number) => (
 	                <Comment key={index} comment={comment} />
 	            ))
           ):(
             <p> No Comments</p>
           )}
+
+                  <CommentForm
+                    usernameprop=""
+                    commentTextprop=""
+                    blogSlug={slug}
+                  ></CommentForm>
+                    
         </div>
         
         <div className={style.footer}>

@@ -15,14 +15,15 @@ type CommentProps = {
 		Makes your code look nicer and allows for better readability.
 	*/}
 function parseCommentTime(time: Date){
-    const date = time.toDateString();
-    let hours = time.getHours();
-    const minute =time.getMinutes();
+    const timeobj = new Date(time);
+    const date = timeobj.toLocaleDateString();
+    let hours = timeobj.getHours();
+    let minute =timeobj.getMinutes();
     const amOrPm = hours >= 12 ? 'PM' : 'AM'; // Determine AM or PM
     hours = hours % 12 || 12; // Convert to 12-hour format (0 becomes 12)
-
+    const formattedMinute = minute < 10 ? `0${minute}` : minute;
     // Format the final string
-    const finalDate = `${date} ${hours}:${minute} ${amOrPm}`;
+    const finalDate = `${date} ${hours}:${formattedMinute} ${amOrPm}`;
     return finalDate
     
 

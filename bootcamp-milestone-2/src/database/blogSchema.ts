@@ -14,7 +14,7 @@ type Blog = {
 	imageAlt: string;
   slug: string; 
   content: string;
-  comment: IComment[];
+  comments: IComment[];
 };
 
 // mongoose schema 
@@ -26,11 +26,11 @@ const blogSchema = new Schema<Blog>({
 		imageAlt: { type: String, required: true },
 		slug: { type: String, required: true },
 		content: { type: String, required: true },
-		comment: {
+		comments: [{
 			user: {type: String, required: true}, 
 			comment: {type : String, required : true},
 			time : { type: Date, required: true, default: new Date()}
-		}
+		}]
 		
 })
 
