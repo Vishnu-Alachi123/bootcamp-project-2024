@@ -14,14 +14,9 @@ type IComment = {
 
 async function getBlog(slug: string) {
 
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const deployedUrl = process.env.VERCEL_URL;
 
-  if (!baseUrl) {
-    console.error('Base URL not found');
-    return null;
-  }
-
-  const url = `${baseUrl}/api/blogs/${slug}`;
+  const url = `${deployedUrl}/api/blogs/${slug}`;
   try {
 
     const res = await fetch(url, {
