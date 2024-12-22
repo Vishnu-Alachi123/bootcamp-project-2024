@@ -5,6 +5,7 @@ import "../../globals.css";
 import Comment from '@/app/c/components/comment';
 import CommentForm from '@/app/c/components/blogcommentform';
 
+
 type IComment = {
 	user: string;
 	comment: string;
@@ -13,7 +14,7 @@ type IComment = {
 
 async function getBlog(slug: string) {
   try {
-    const url = `https://bootcamp-project-2024-45x2npeum-vishnu-alachis-projects.vercel.app/blog/${slug}`;
+    const url = `https://bootcamp-project-2024--vishnu-alachis-projects.vercel.app/blog/${slug}`;
 
     const res = await fetch(url, {
       cache: "no-store",
