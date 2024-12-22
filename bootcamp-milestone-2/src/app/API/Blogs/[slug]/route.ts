@@ -6,9 +6,9 @@ import connectDB from '@/database/db'
 
 
 
-export async function GET(req: NextRequest, { params }: {params: {slug: string } }) {
+export async function GET(req: NextRequest, { params }: {params: Promise<{slug: string }> }) {
     await connectDB() 
-		const  slug  = params.slug
+		const  slug  = (await params).slug
 
 	   try {
 	        const blog = await blogSchema.findOne({ slug }).orFail()
