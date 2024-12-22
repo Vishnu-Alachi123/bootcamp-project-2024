@@ -20,8 +20,6 @@ async function getBlogs(){
 
 export default async function Home() {
     const blogs= await getBlogs();
-    const deployedUrl = typeof window !== 'undefined' ? window.location.href : '';
-  console.log(deployedUrl)
 
     if (!blogs) {
         return (

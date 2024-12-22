@@ -15,6 +15,8 @@ type Blog = {
 
 
 export default function BlogPreview(props: Blog) {
+  const deployedUrl = process.env.VERCEL_URL;
+  console.log(deployedUrl);
   return (
       <div className={style.blog_container}>
           <Link href={`/blog/${props.slug}`}>

@@ -14,8 +14,9 @@ type IComment = {
 
 async function getBlog(slug: string) {
 
-  const deployedUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const url = '${currentUrl}${slug}'
+  const deployedUrl = process.env.VERCEL_URL;
+  console.log(deployedUrl);
+  const url = '${deployedUrl}${slug}';
 
   try {
 
