@@ -13,8 +13,16 @@ type IComment = {
 }
 
 async function getBlog(slug: string) {
+
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+
+  if (!baseUrl) {
+    console.error('Base URL not found');
+    return null;
+  }
+
+  const url = `${baseUrl}/api/blogs/${slug}`;
   try {
-    const url = `/API/Blogs/${slug}`;
 
     const res = await fetch(url, {
       cache: "no-store",
