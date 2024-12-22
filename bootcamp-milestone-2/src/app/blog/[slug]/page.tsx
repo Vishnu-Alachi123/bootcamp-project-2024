@@ -15,7 +15,6 @@ type IComment = {
 async function getBlog(slug: string) {
 
   const deployedUrl = process.env.VERCEL_URL;
-  console.log("de",deployedUrl)
 
   const url = `${deployedUrl}/api/blogs/${slug}`;
   try {
@@ -40,6 +39,8 @@ async function getBlog(slug: string) {
 export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
   const blog = await getBlog(slug);
+  const deployedUrl = process.env.VERCEL_URL;
+  console.log("de",deployedUrl)
 
   if (blog) {
     return (
