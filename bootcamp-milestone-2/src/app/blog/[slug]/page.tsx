@@ -4,7 +4,6 @@ import Image from "next/image";
 import "../../globals.css";
 import Comment from '@/app/c/components/comment';
 import CommentForm from '@/app/c/components/blogcommentform';
-import { useEffect, useState } from 'react';
 
 
 type IComment = {
@@ -15,13 +14,7 @@ type IComment = {
 
 async function getBlog(slug: string) {
 
-  const [deployedUrl, setDeployedUrl] = useState('');
-
-  useEffect(() => {
-    // Accessing the current URL in the browser (running in the client)
-    const currentUrl = window.location.href; // or window.location.origin
-    setDeployedUrl(currentUrl);
-  }, []);
+  const deployedUrl = typeof window !== 'undefined' ? window.location.href : '';
   const url = '${currentUrl}${slug}'
 
   try {
