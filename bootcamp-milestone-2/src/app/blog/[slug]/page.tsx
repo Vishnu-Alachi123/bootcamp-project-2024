@@ -14,7 +14,7 @@ type IComment = {
 
 async function getBlog(slug: string) {
   try {
-    const url = `/API/Blogs/${slug}`;
+    const url = `https://bootcamp-project-2024-qp0sklqwd-vishnu-alachis-projects.vercel.app/API/Blogs/${slug}`;
 
     const res = await fetch(url, {
       cache: "no-store",
