@@ -4,6 +4,7 @@ import Image from "next/image";
 import "../../globals.css";
 import Comment from '@/app/c/components/comment';
 import CommentForm from '@/app/c/components/blogcommentform';
+import getBlogs from '@/app/blogData';
 
 
 type IComment = {
@@ -12,34 +13,47 @@ type IComment = {
 	time: Date;
 }
 
-async function getBlog(slug: string) {
-
-  const deployedUrl = process.env.VERCEL_URL;
-  console.log(deployedUrl);
-  const url = '${deployedUrl}${slug}';
-
-  try {
-
-    const res = await fetch(url, {
-      cache: "no-store",
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      console.log(res)
-      throw new Error("Failed to fetch blog");
-    }
-
-    return data;
-  } catch (err: unknown) {
-    console.log(`error: ${err}`);
-    return null;
-  }
+async function getSlugBlog(
+  blogsGetter: () => Promise<any[] | null>,
+  slug: string
+): Promise<any | null> {
+  const blogs = await blogsGetter(); // Call the function and await its result
+  if (!blogs) return null; // Handle the case where blogs is null
+  const filteredBlog = blogs.find((blog) => blog.slug === slug); // Find the blog with the matching slug
+  return filteredBlog || null; // Return the blog or null if not found
 }
+
+
+// async function getBlog(slug: string) {
+
+//    const url = `http://localhost:3000/API/Blogs/${slug}`;
+
+//   try {
+
+//     const res = await fetch(url, {
+//       cache: "no-store",
+//     });
+//     const data = await res.json();
+
+//     if (!res.ok) {
+//       console.log(res)
+//       throw new Error("Failed to fetch blog");
+//     }
+
+//     return data;
+//   } catch (err: unknown) {
+//     console.log(`error: ${err}`);
+//     return null;
+//   }
+
+  
+// }
 
 export default async function Blog({ params }: { params: Promise<{ slug: string }> }) {
   const slug = (await params).slug;
-  const blog = await getBlog(slug);
+  const blogs = await getBlogs;
+  const blog = await getSlugBlog(getBlogs, slug);
+
 
 
   if (blog) {

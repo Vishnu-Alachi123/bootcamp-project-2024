@@ -1,5 +1,4 @@
 import connectDB from "@/database/db";
-import { useState, useEffect } from "react";
 import BlogPreview from "./c/components/blogPreview";
 import Image from "next/image";
 import Blogs from "@/database/blogSchema";
